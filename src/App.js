@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css'
-import Books from './Books.js'
 import ListBooks from './ListBooks.js'
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -19,9 +18,9 @@ class BooksApp extends React.Component {
 
   render() {
     return (
-      <div> 
+      <div>
         <Route exact path='/search' render={({ history }) => (         
-          <Books/>
+          <p>Hello</p>
         )} />
         <Route exact path='/' render={() => (
           <ListBooks/>

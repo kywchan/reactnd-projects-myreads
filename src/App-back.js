@@ -41,7 +41,6 @@ class BooksApp2 extends React.Component {
           </div>
         ) : (
           <div className="list-books">
-            <Books/>
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>

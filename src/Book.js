@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI.js'
-import { Link } from 'react-router-dom'
 
 class Book extends Component {
+    
     render () {
 
         const { book } = this.props

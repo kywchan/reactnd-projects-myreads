@@ -20,7 +20,10 @@ class Bookshelf extends Component {
                         <ol className="books-grid">
                             {filteredBooks.map((book) =>
                                 <li key={book.id}>
-                                    <Book book={book}/>
+                                    <Book
+                                        handleChange={this.props.handleChange}
+                                        onShelfUpdate={this.props.onShelfUpdate} 
+                                        book={book}/>
                                 </li>
                             )}
                         </ol>

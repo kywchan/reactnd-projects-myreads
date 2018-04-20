@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import Bookshelf from './Bookshelf.js'
+import SearchBooks from './SearchBooks.js'
 import * as BooksAPI from './BooksAPI.js'
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -21,19 +22,22 @@ class BooksApp extends React.Component {
   }
 
   updateShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf);
-    BooksAPI.getAll()
-    .then((books) => {
-        this.setState(() => ({
-            books        
-        }))
+    // we're just gonna delete and add the object, instead of finding the index and updating the object.
+    const removed = this.state.books.filter((b) => {
+      return b.id !== book.id
     })
-    console.log("updateShelf");
+    // instead of this set, we can set in child and pass the book back)
+    book.shelf = shelf
+
+    const added = removed.concat(book)
+    this.setState((currentState) => ({
+      books: added
+    }))
+    BooksAPI.update(book, shelf)
   }
 
   handleChange = (e) => {
-    console.log(e)
-    this.updateShelf(e.book,)
+    this.updateShelf(e.book,e.value)
   }
 
   render() {
@@ -41,7 +45,7 @@ class BooksApp extends React.Component {
     return (
       <div>
         <Route exact path='/search' render={({ history }) => (         
-          <p>Hello</p>
+          <SearchBooks />    
         )} />
         <Route exact path='/' render={() => (
           <div className="list-books">

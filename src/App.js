@@ -9,7 +9,9 @@ import { Link } from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    result: [],
+    query: ''
   }
 
   componentDidMount() {
@@ -28,13 +30,13 @@ class BooksApp extends React.Component {
     })
     // instead of this set, we can set in child and pass the book back)
     book.shelf = shelf
-
     const added = removed.concat(book)
     this.setState((currentState) => ({
       books: added
     }))
     BooksAPI.update(book, shelf)
   }
+
 
   handleChange = (e) => {
     this.updateShelf(e.book,e.value)
@@ -45,7 +47,10 @@ class BooksApp extends React.Component {
     return (
       <div>
         <Route exact path='/search' render={({ history }) => (         
-          <SearchBooks />    
+          <SearchBooks 
+            books={this.state.books}
+            updateQuery={this.updateQuery}
+          />    
         )} />
         <Route exact path='/' render={() => (
           <div className="list-books">

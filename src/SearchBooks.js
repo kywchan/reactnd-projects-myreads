@@ -37,12 +37,9 @@ class SearchBooks extends Component {
                 this.setState(() => ({
                     result: []
                 }))
-            }
-        )
+            })
     }
     
-
-
     render () {
 
         let { query } = this.state

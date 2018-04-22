@@ -5,7 +5,10 @@ class Book extends Component {
     render () {
 
         const { book } = this.props
-
+        if (typeof book.shelf === "undefined") {
+            book.shelf = "none"
+        }
+        
         return (
 
             <div className="book">
@@ -21,7 +24,7 @@ class Book extends Component {
                     </div>
                     <div className="book-shelf-changer">
                         <select value={book.shelf} onChange={(e) => this.props.handleChange({book: book, value: e.target.value})}>
-                            <option value="none" disabled>Move to...</option>
+                            <option value="moveTo" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
                             <option value="read">Read</option>

@@ -9,9 +9,7 @@ import { Link } from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
-    books: [],
-    result: [],
-    query: ''
+    books: []
   }
 
   componentDidMount() {
@@ -49,6 +47,7 @@ class BooksApp extends React.Component {
         <Route exact path='/search' render={({ history }) => (         
           <SearchBooks 
             books={this.state.books}
+            handleChange={this.handleChange}
             updateQuery={this.updateQuery}
           />    
         )} />
@@ -60,21 +59,19 @@ class BooksApp extends React.Component {
             <Bookshelf
               handleChange={this.handleChange}
               heading='Currently Reading' 
-              shelf='currentlyReading' 
-              books={this.state.books}
+              books={this.state.books.filter((val) => { return val.shelf ==='currentlyReading'})}
             />
             <Bookshelf
               handleChange={this.handleChange}
               heading='Want to Read' 
-              shelf='wantToRead' 
-              books={this.state.books}
+              books={this.state.books.filter((val) => { return val.shelf ==='wantToRead'})}
             />
             <Bookshelf
               handleChange={this.handleChange}
               heading='Read' 
-              shelf='read' 
-              books={this.state.books}
+              books={this.state.books.filter((val) => { return val.shelf ==='read'})}
             />
+
             <div className="open-search">
               <Link
                 to='/search'

@@ -25,6 +25,7 @@ class SearchBooks extends Component {
     bookSearch(query) {
         BooksAPI.search(query)
             .then((results) => {
+                // set the right shelf in search
                 this.props.books.forEach(element => {
                     results.forEach(elementRes => {
                         if (element.id === elementRes.id) elementRes.shelf = element.shelf

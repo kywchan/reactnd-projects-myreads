@@ -5,6 +5,7 @@ class Book extends Component {
     render () {
 
         const { book } = this.props
+        // if the book has no shelf, set it to none in display
         if (typeof book.shelf === "undefined") {
             book.shelf = "none"
         }
